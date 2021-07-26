@@ -28,10 +28,10 @@ char **find_path(char **env)
             temp = ft_strdup(env[i]);
         i++;
     }
-    if (temp != NULL)
-        printf("\nPath found is \n[%s]\n\n\n", temp);
-    else
+    if (temp == NULL)
         printf("something wrong happened\n");
+    // else
+        // printf("\nPath found is \n[%s]\n\n\n", temp);
     i = 0;
     while (temp[i] != '=')
         i++;
@@ -45,7 +45,7 @@ int main(int argc, char **argv, char **env)
 {
     char **path;
     
-    if (argc != 5)
+    if (argc != 5 && argc != 4)
     {
         printf("Wrong arg please enter correct shit\n");
         return (1);
@@ -56,7 +56,7 @@ int main(int argc, char **argv, char **env)
         printf("Path not found\nPlease try again\n");
         return (2);
     }
-    print_path(path);
+    // print_path(path);
     start_pipex(argv, env, path);
     free_doub_char(path);
     return (0);   

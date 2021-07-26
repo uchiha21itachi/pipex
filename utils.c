@@ -77,3 +77,25 @@ int	ft_strncmp(const char *s1, const char *s2, size_t n)
 	}
 	return (x);
 }
+
+char	*ft_strjoin(char *s1, char const *s2)
+{
+	char	*ans;
+	int		len;
+
+	len = ft_strlen(s1) + ft_strlen((char *)s2);
+	ans = (char *)malloc(len + 1);
+	if (!ans)
+		return (NULL);
+	while (*s1)
+		*ans++ = *s1++;
+	while (*s2)
+		*ans++ = *s2++;
+	*ans = '\0';
+	if (*s1)
+	{
+		free(s1);
+		s1 = NULL;
+	}
+	return (ans - len);
+}

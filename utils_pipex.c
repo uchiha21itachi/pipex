@@ -47,9 +47,7 @@ char    **ft_split(char *str, char c)
         if (str[i] == c)
             chunk++;
     }
-    printf("\n\nchunks [%d]\n", chunk);
     result = (char **)malloc(sizeof(char *) * (chunk + 1));
-    printf("str inside split [%s]\n", str);
     fill_result(result, str, chunk, c);
     return (result);
 }
