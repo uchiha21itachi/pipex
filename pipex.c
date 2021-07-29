@@ -5,7 +5,7 @@ void    print_path(char **path)
     int i;
 
     i = 0;
-    printf("inside printing thing\n");
+    printf("\nprinting thing\n");
     while (path[i] != NULL)
     {
         printf("i [%d] [%s]\n", i, path[i]);
@@ -57,6 +57,7 @@ int main(int argc, char **argv, char **env)
         return (2);
     }
     // print_path(path);
+    // (void)argv;
     start_pipex(argv, env, path);
     free_doub_char(path);
     return (0);   
