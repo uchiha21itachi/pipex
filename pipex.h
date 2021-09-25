@@ -20,7 +20,8 @@ char    **ft_split(char *str, char c);
 void    free_double_char(char **str);
 
 //start_pipex.c
-void    start_pipex(char **argv, char **env, char **path);
+int    start_pipex(char **argv, char **env, char **path);
+int     clean_exit(char *err_msg);
 
 //pipex.c
 void    print_path(char **path);

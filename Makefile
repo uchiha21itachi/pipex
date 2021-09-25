@@ -1,5 +1,5 @@
 NAME = pipex.a
-CC = gcc  # C compiler
+CC = gcc #-fsanitize=address -g3 # C compiler
 CFLAGS = -Wall -Werror -Wextra -I.   # C flags
 RM = rm -f   # rm command
 
@@ -24,3 +24,7 @@ clean:
 fclean: clean
 	rm -f $(NAME)
 	rm pipex
+
+re: fclean all
+
+.PHONY: all clean fclean re

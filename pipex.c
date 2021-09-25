@@ -6,7 +6,7 @@
 /*   By: yassharm <yassharm@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/30 02:51:26 by yassharm          #+#    #+#             */
-/*   Updated: 2021/09/25 16:46:32 by yassharm         ###   ########.fr       */
+/*   Updated: 2021/09/25 18:23:58 by yassharm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,20 +37,16 @@ char **find_path(char **env)
 
 int main(int argc, char **argv, char **env)
 {
-    char **path;
-    
+    char    **path;
+    int     ret;
+       
+    ret = 0;
     if (argc != 5)
-    {
-        printf("Wrong arg please enter correct shit\n");
-        return (1);
-    }
+        return(clean_exit("Wrong arg please enter correct shit\n"));
     path = find_path(env);
     if (path == NULL)
-    {
-        printf("Path not found\nPlease try again\n");
-        return (2);
-    }
-    start_pipex(argv, env, path);
+        return(clean_exit("Path not found\nPlease try again\n") + 1);
+    ret = start_pipex(argv, env, path);
     free_double_char(path);
-    return (0);   
+    return (ret);   
 }
