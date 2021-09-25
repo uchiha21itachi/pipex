@@ -1,6 +1,6 @@
 #include "pipex.h"
 
-void    free_doub_char(char **str)
+void    free_double_char(char **str)
 {
     int i;
 

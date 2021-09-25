@@ -17,7 +17,7 @@ char	*ft_strjoin(char *s1, char const *s2);
 
 //utils_pipex.c
 char    **ft_split(char *str, char c);
-void    free_doub_char(char **str);
+void    free_double_char(char **str);
 
 //start_pipex.c
 void    start_pipex(char **argv, char **env, char **path);

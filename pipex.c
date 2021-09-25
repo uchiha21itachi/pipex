@@ -1,18 +1,16 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   pipex.c                                            :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: yassharm <yassharm@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2021/07/30 02:51:26 by yassharm          #+#    #+#             */
+/*   Updated: 2021/09/25 16:46:32 by yassharm         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "pipex.h"
-
-void    print_path(char **path)
-{
-    int i;
-
-    i = 0;
-    printf("\nprinting thing\n");
-    while (path[i] != NULL)
-    {
-        printf("i [%d] [%s]\n", i, path[i]);
-        i++;
-    }
-    printf("i [%d] [%s]\n", i, path[i]);
-}
 
 char **find_path(char **env)
 {
@@ -28,10 +26,6 @@ char **find_path(char **env)
             temp = ft_strdup(env[i]);
         i++;
     }
-    if (temp == NULL)
-        printf("something wrong happened\n");
-    // else
-        // printf("\nPath found is \n[%s]\n\n\n", temp);
     i = 0;
     while (temp[i] != '=')
         i++;
@@ -45,7 +39,7 @@ int main(int argc, char **argv, char **env)
 {
     char **path;
     
-    if (argc != 5 && argc != 4)
+    if (argc != 5)
     {
         printf("Wrong arg please enter correct shit\n");
         return (1);
@@ -56,9 +50,7 @@ int main(int argc, char **argv, char **env)
         printf("Path not found\nPlease try again\n");
         return (2);
     }
-    // print_path(path);
-    // (void)argv;
     start_pipex(argv, env, path);
-    free_doub_char(path);
+    free_double_char(path);
     return (0);   
 }
