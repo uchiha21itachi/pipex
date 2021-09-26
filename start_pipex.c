@@ -43,18 +43,19 @@ void    child_process_one(int pipe_fd[2], char **arg, char **path, char **env)
         char    **cmd_arg;
         int     i;
 
+        errno = 0;
         close(pipe_fd[0]);
         if (access(arg[1], F_OK) < 0)
         {
-            i = clean_exit("Access to infile fail\n");
+            i = clean_exit(strerror(errno));
+            i = clean_exit(" : ");
+            i = clean_exit(arg[1]);
+            i = clean_exit("\n");
             return;
         }
         infile_fd = open(arg[1], O_RDONLY, 0644);
         if (infile_fd < 0)
-        {
-            i = clean_exit("Cannot get fd of infile\n");
             return;
-        }
         (void)i;
         dup2(infile_fd, STDIN_FILENO);
         close(infile_fd);
@@ -100,8 +101,10 @@ int    start_pipex(char **argv, char **env, char **path)
         return(clean_exit("Error in forking\n") + 3);
     if (pid1 == 0)
         child_process_one(pipe_fd, argv, path, env);
-    pid2 = fork();
-    if (pid2 < 0)
+
+    if (pid1 != 0)
+        pid2 = fork();
+    if (pid1 != 0 && pid2 < 0)
         return(clean_exit("Error in forking second time\n") + 4);
     if (pid2 == 0)
         child_process_two(pipe_fd, argv, path, env);
